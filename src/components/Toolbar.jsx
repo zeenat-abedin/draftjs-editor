@@ -2,7 +2,7 @@ import React from "react";
 import { RichUtils } from "draft-js";
 import { inlineStyles, blockStyles } from "./styles";
 
-const Toolbar = (props) => {
+function Toolbar(props) {
   const { editorState, setEditorState } = props;
   console.log("editorState", editorState);
 
@@ -66,6 +66,6 @@ const Toolbar = (props) => {
       })}
     </div>
   );
-};
+}
 
 export default Toolbar;

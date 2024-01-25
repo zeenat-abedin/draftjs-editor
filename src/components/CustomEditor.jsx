@@ -9,6 +9,7 @@ export default function CustomEditor() {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+  const [convertedContent, setConvertedContent] = useState(null);
 
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -20,8 +21,6 @@ export default function CustomEditor() {
     return "not handled";
   };
 
-  const [convertedContent, setConvertedContent] = useState(null);
-
   const styleMap = {
     RED: {
       color: "#ff0000",
@@ -30,12 +29,12 @@ export default function CustomEditor() {
   const handleSave = () => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
+    console.log("rawContent", rawContent);
     const serializedData = JSON.stringify(rawContent);
     localStorage.setItem("editorData", serializedData);
   };
 
   useEffect(() => {
-    // Update local storage whenever the editor state changes
     handleSave();
   }, [editorState]);
 
@@ -44,7 +43,7 @@ export default function CustomEditor() {
     setConvertedContent(html);
   }, [editorState]);
 
-  console.log(convertedContent);
+  console.log("convertedContent", convertedContent);
 
   return (
     <div className={styles.editorContainer}>
