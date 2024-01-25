@@ -1,45 +1,32 @@
 import { useState, useEffect } from "react";
-import {
-  Editor,
-  EditorState,
-  RichUtils,
-  convertToRaw,
-  convertFromRaw,
-} from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { Editor, EditorState, RichUtils, convertToRaw } from "draft-js";
 import { convertToHTML } from "draft-convert";
-
 import "draft-js/dist/Draft.css";
 import styles from "./CustomEditor.module.css";
+import Toolbar from "./Toolbar";
 
 export default function CustomEditor() {
-  const [editorState, setEditorState] = useState(() => {
-    // Retrieve data from local storage
-    const savedData = localStorage.getItem("editorData");
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
-    if (savedData) {
-      const contentState = convertFromRaw(JSON.parse(savedData));
-      return EditorState.createWithContent(contentState);
+  const handleKeyCommand = (command, editorState) => {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+
+    if (newState) {
+      setEditorState(newState);
+      return "handled";
     }
-    return EditorState.createEmpty();
-  });
-  const [convertedContent, setConvertedContent] = useState(null);
-
-  const handleChange = (newState) => {
-    setEditorState(newState);
+    return "not handled";
   };
 
-  // const handleKeyCommand = (command, newState) => {
-  //   const newEditorState = RichUtils.handleKeyCommand(newState, command);
+  const [convertedContent, setConvertedContent] = useState(null);
 
-  //   if (newEditorState) {
-  //     handleChange(newEditorState);
-  //     return "handled";
-  //   }
-
-  //   return "not-handled";
-  // };
-
+  const styleMap = {
+    RED: {
+      color: "#ff0000",
+    },
+  };
   const handleSave = () => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
@@ -59,38 +46,21 @@ export default function CustomEditor() {
 
   console.log(convertedContent);
 
-  const handleHeading = () => {
-    setEditorState(RichUtils.toggleBlockType(editorState, "header-one"));
-  };
-
-  const handleBold = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
-  };
-
-  const handleRedLine = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "STRIKETHROUGH"));
-  };
-
-  const handleUnderline = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
-  };
-
   return (
     <div className={styles.editorContainer}>
       <header className={styles.editor}>Custom Text Editor</header>
       <div className={styles.toolbar}>
-        <button onClick={handleHeading}>Heading</button>
-        <button onClick={handleBold}>Bold</button>
-        <button onClick={handleRedLine}>Red Line</button>
-        <button onClick={handleUnderline}>Underline</button>
+        <Toolbar editorState={editorState} setEditorState={setEditorState} />
       </div>
       <div className={styles.draftEditorRoot}>
         <div className={styles.draftEditor}>
           <Editor
             editorState={editorState}
-            onEditorStateChange={setEditorState}
+            onChange={setEditorState}
+            handleKeyCommand={handleKeyCommand}
             placeholder="Write something!"
-            onChange={handleChange}
+            customStyleMap={styleMap}
+            // onChange={handleChange}
           />
         </div>
       </div>
