@@ -29,7 +29,7 @@ export default function CustomEditor() {
   const handleSave = () => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
-    console.log("rawContent", rawContent);
+
     const serializedData = JSON.stringify(rawContent);
     localStorage.setItem("editorData", serializedData);
   };
