@@ -4,7 +4,6 @@ import { inlineStyles, blockStyles } from "./styles";
 
 function Toolbar(props) {
   const { editorState, setEditorState } = props;
-  console.log("editorState", editorState);
 
   const handleInlineStyle = (event, style) => {
     event.preventDefault();
