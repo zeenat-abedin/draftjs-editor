@@ -59,7 +59,6 @@ export default function CustomEditor() {
             handleKeyCommand={handleKeyCommand}
             placeholder="Write something!"
             customStyleMap={styleMap}
-            // onChange={handleChange}
           />
         </div>
       </div>
