@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Editor, EditorState, RichUtils, convertToRaw } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import "draft-js/dist/Draft.css";
-import styles from "./CustomEditor.module.css";
+
 import Toolbar from "./Toolbar";
+import styles from "./CustomEditor.module.css";
 
 export default function CustomEditor() {
   const [editorState, setEditorState] = useState(() =>
