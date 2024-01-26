@@ -38,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/draft-convert": "^2.1.8",
+    "@types/draft-js": "^0.11.17"
   }
 }
