@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Custom Text Editor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates a custom text editor built using React, Draft.js, and custom styling. It provides a rich text editing experience with various formatting options and the ability to save and load content.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To run the application, follow these steps:
 
-### `npm start`
+1. Clone the repository:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+git clone https://github.com/your-username/custom-text-editor.git
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install the dependencies:
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Start the development server:
 
-### `npm run build`
+```
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application will be available at http://localhost:3000.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Code Overview
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The `CustomEditor` component is the main component of the application. It manages the state of the editor, handles user interactions, and renders the editor UI.
 
-### `npm run eject`
+### State Management
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The `CustomEditor` component uses the `useState` hook to manage the state of the editor. The state consists of the following properties:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `editorState`: This property stores the current state of the editor content. It is an instance of `EditorState` from Draft.js.
+- `convertedContent`: This property stores the HTML representation of the editor content. It is used to display the content in a human-readable format.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Event Handling
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The `CustomEditor` component handles various user interactions, such as key presses, button clicks, and changes to the editor content.
 
-## Learn More
+- **Key press handling:** The `handleKeyCommand` function is used to handle key presses in the editor. It checks if the key press corresponds to a supported command, such as bold, italic, or undo, and updates the editor state accordingly.
+- **Button click handling:** The `handleSave` function is used to save the editor content to local storage. It converts the editor state to a JSON string and stores it in the browser's local storage.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Rendering
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The `CustomEditor` component renders the editor UI, which consists of the following elements:
 
-### Code Splitting
+- **Toolbar:** The toolbar contains buttons for various formatting options, such as bold, italic, and underline.
+- **Editor:** The editor is where the user can enter and edit text. It is implemented using Draft.js's `Editor` component.
+- **Save button:** The save button allows the user to save the editor content to local storage.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Custom Styling
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The `CustomEditor` component uses custom styling to enhance the appearance of the editor.
