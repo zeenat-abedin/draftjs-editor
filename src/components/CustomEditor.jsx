@@ -22,7 +22,7 @@ export default function CustomEditor() {
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
 
-    // If enter key is pressed, than make it normal text
+    // If enter key is pressed, then make it normal text
     if (command === "split-block") {
       const contentState = editorState.getCurrentContent();
       const selectionState = editorState.getSelection();
@@ -84,25 +84,25 @@ export default function CustomEditor() {
       return "handled";
     }
 
-    // If currentContent starts with * + space , than make it bold
+    // If currentContent starts with * + space , then make it bold
     if (currentContent === "* ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
       return "handled";
     }
 
-    // If currentContent starts with ** + space , than make it red line
+    // If currentContent starts with ** + space , then make it red line
     if (currentContent === "** ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "RED"));
       return "handled";
     }
 
-    // If currentContent starts with *** + space , than make it underline
+    // If currentContent starts with *** + space , then make it underline
     if (currentContent === "*** ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
       return "handled";
     }
 
-    // If enter key is pressed, than make it normal text
+    // If enter key is pressed, then make it normal text
     if (char === "Enter") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "unstyled"));
       return "handled";
@@ -111,7 +111,7 @@ export default function CustomEditor() {
 
   const keyBindingFn = (e) => {
     console.log("e.keyCode", e.keyCode);
-    // If enter key is pressed, than make it normal text
+    // If enter key is pressed, then make it normal text
     if (e.keyCode === 13) {
       return "split-block";
     }
