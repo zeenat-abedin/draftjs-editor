@@ -15,7 +15,7 @@ git clone https://github.com/your-username/custom-text-editor.git
 2. Install the dependencies:
 
 ```
-npm install
+npm i --legacy-peer-deps
 ```
 
 3. Start the development server:
