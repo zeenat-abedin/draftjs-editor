@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { Editor, EditorState, RichUtils, convertToRaw } from "draft-js";
+import { EditorState, RichUtils, convertToRaw } from "draft-js";
 import { convertToHTML } from "draft-convert";
+import Editor from "draft-js-plugins-editor";
+import createMarkdownShortcutsPlugin from "draft-js-markdown-shortcuts-plugin";
 import "draft-js/dist/Draft.css";
 
 import Toolbar from "./Toolbar";
 import styles from "./CustomEditor.module.css";
+
+const plugins = [createMarkdownShortcutsPlugin()];
 
 export default function CustomEditor() {
   const [editorState, setEditorState] = useState(() =>
@@ -44,8 +48,6 @@ export default function CustomEditor() {
     setConvertedContent(html);
   }, [editorState]);
 
-  console.log("convertedContent", convertedContent);
-
   return (
     <div className={styles.editorContainer}>
       <header className={styles.editor}>Custom Text Editor</header>
@@ -60,6 +62,7 @@ export default function CustomEditor() {
             handleKeyCommand={handleKeyCommand}
             placeholder="Write something!"
             customStyleMap={styleMap}
+            plugins={plugins}
           />
         </div>
       </div>
