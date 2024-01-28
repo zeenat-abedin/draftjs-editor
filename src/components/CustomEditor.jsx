@@ -110,7 +110,6 @@ export default function CustomEditor() {
   };
 
   const keyBindingFn = (e) => {
-    console.log("e.keyCode", e.keyCode);
     // If enter key is pressed, then make it normal text
     if (e.keyCode === 13) {
       return "split-block";
@@ -125,8 +124,6 @@ export default function CustomEditor() {
     let html = convertToHTML(editorState.getCurrentContent());
     setConvertedContent(html);
   }, [editorState]);
-
-  console.log("convertedContent", convertedContent);
 
   return (
     <div className={styles.editorContainer}>
