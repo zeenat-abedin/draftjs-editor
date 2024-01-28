@@ -49,7 +49,7 @@ export default function CustomEditor() {
 
   const handleReturn = (e) => {
     // Handle Return key to create a new line
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default behavior
     const newEditorState = EditorState.push(
       editorState,
       Modifier.splitBlock(
@@ -84,19 +84,19 @@ export default function CustomEditor() {
       return "handled";
     }
 
-    // If currentContent starts with * + space , then make it bold
+    // If currentContent starts with * + space , than make it bold
     if (currentContent === "* ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
       return "handled";
     }
 
-    // If currentContent starts with ** + space , then make it red line
+    // If currentContent starts with ** + space , than make it red line
     if (currentContent === "** ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "RED"));
       return "handled";
     }
 
-    // If currentContent starts with *** + space , then make it underline
+    // If currentContent starts with *** + space , than make it underline
     if (currentContent === "*** ") {
       setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
       return "handled";
