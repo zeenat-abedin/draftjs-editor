@@ -1,5 +1,4 @@
 import CustomEditor from "./components/CustomEditor";
-import "./index.css";
 
 function App() {
   return (
